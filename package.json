@@ -1,0 +1,26 @@
+{
+  "name": "@oncody/objects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oncody/object-utils.git"
+  },
+  "dependencies": {
+    "lodash": "4.17.21"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "Cody Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oncody/object-utils/issues"
+  },
+  "homepage": "https://github.com/oncody/object-utils#readme"
+}
