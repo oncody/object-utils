@@ -1,8 +1,8 @@
 import _ from "lodash";
 
-export default class AssociativeArrayObject {
+export default class Index {
     /**
-     * @returns {AssociativeArrayObject}
+     * @returns {Index}
      */
     constructor() {
     }
@@ -23,7 +23,7 @@ export default class AssociativeArrayObject {
      * @returns {string}
      */
     static join(object, keyValueSeparator, entrySeparator) {
-        if(!AssociativeArrayObject.size(object)) {
+        if(!Index.size(object)) {
             return '';
         }
 
