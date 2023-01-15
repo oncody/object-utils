@@ -1,1 +1,1 @@
-export {default as Objects} from "./src/objects";
+export {default as Objects} from "./src/objects.js";
