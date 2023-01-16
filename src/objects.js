@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export default class Objects {
+class Objects {
     /**
      * @returns {Objects}
      */
@@ -60,3 +60,5 @@ export default class Objects {
         return _.sortBy(array, field)
     }
 }
+
+export {Objects}
