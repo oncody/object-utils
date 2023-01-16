@@ -50,14 +50,8 @@ class Objects {
         return _.isEqual(object1, object2);
     }
 
-    /**
-     *
-     * @param {[]} array
-     * @param {string} field
-     * @return {[]}
-     */
-    static sort(array, field) {
-        return _.sortBy(array, field)
+    static appendKeyValue(object, key, value) {
+        return Object.assign(object, {key: value})
     }
 }
 
