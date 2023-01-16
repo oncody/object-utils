@@ -50,8 +50,16 @@ class Objects {
         return _.isEqual(object1, object2);
     }
 
-    static appendKeyValue(object, key, value) {
-        return Object.assign(object, {key: value})
+    /**
+     * Edits object in place and adds key => value to object. Then returns same object
+     * @param {Object} object
+     * @param {string} key
+     * @param {*} value
+     * @return {Object}
+     */
+    static appendValue(object, key, value) {
+        object[key] = value;
+        return object;
     }
 }
 
