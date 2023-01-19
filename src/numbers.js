@@ -1,11 +1,5 @@
 class Numbers {
     /**
-     * @returns {Numbers}
-     */
-    constructor() {
-    }
-
-    /**
      * Remove commas from number and then convert that number to a number object
      * @param {string} string
      * @returns {number}
@@ -21,9 +15,7 @@ class Numbers {
      * @param {number} decimals
      * @returns {number}
      */
-    static roundFloat(number, decimals) {
-        return parseFloat(number.toFixed(decimals));
-    }
+    static roundFloat = (number, decimals) => parseFloat(number.toFixed(decimals));
 
     /**
      *

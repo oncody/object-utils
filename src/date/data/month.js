@@ -12,18 +12,17 @@ class Month {
     static NOVEMBER = new Month(10);
     static DECEMBER = new Month(11);
 
+    /** @param {number} zeroBasedIndex */
     constructor(zeroBasedIndex) {
         this._zeroBasedIndex = zeroBasedIndex;
         this._oneBasedIndex = zeroBasedIndex + 1;
     }
 
-    zeroBasedIndex() {
-        return this._zeroBasedIndex;
-    }
+    /** @returns {number} */
+    zeroBasedIndex = () => this._zeroBasedIndex;
 
-    oneBasedIndex() {
-        return this._oneBasedIndex;
-    }
+    /** @returns {number} */
+    oneBasedIndex = () => this._oneBasedIndex;
 }
 
 export {Month}

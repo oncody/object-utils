@@ -3,39 +3,35 @@ import objectSupport from "dayjs/plugin/objectSupport.js";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 
 import {DateUnit} from "./data/date-unit.js";
+import {DateFormatBuilder} from "./date-format-builder.js";
+import {MonthFormat} from "./data/month-format.js";
+import {DayFormat} from "./data/day-format.js";
+import {YearFormat} from "./data/year-format.js";
 
 class CalendarDate {
-    /**
-     * @param {dayjs.Dayjs} date
-     * @returns {CalendarDate}
-     */
+    /** @param {dayjs.Dayjs} date */
     constructor(date) {
-        /**
-         * @type {dayjs.Dayjs}
-         * @private
-         */
+        /** @private */
         this._date = date;
     }
 
-    /**
-     *
-     * @return {number}
-     */
-    unix() {
-        return this._date.unix();
-    }
+    /** @return {number} */
+    unix = () => this._date.unix();
 
     /**
-     *
      * @param {CalendarDate} date
      * @returns {boolean}
      */
-    isBefore(date) {
-        return this._date.isBefore(date._date);
-    }
+    isBefore = date => this._date.isBefore(date._date);
 
     /**
-     *
+     * Used for comparing two dates like sorting
+     * @param date
+     * @returns {number}
+     */
+    minus = date => this.unix() - date.unix();
+
+    /**
      * @param {number} value
      * @param {DateUnit} dateUnit
      * @returns {CalendarDate}
@@ -46,7 +42,6 @@ class CalendarDate {
     }
 
     /**
-     *
      * @param {number} value
      * @param {DateUnit} dateUnit
      * @returns {CalendarDate}
@@ -57,61 +52,75 @@ class CalendarDate {
     }
 
     /**
-     *
      * @param {CalendarDate} date
      * @param {DateUnit} dateUnit
      * @returns {number}
      */
-    difference(date, dateUnit) {
-        return this._date.diff(date._date, dateUnit.toString());
-    }
+    difference = (date, dateUnit) => this._date.diff(date._date, dateUnit.toString());
 
     /**
      * 1 - 31. Day of month
      * @returns {number}
      */
-    day() {
-        return this._date.date();
-    }
+    day = () => this._date.date();
 
     /**
-     *
+     * Months are zero indexed. 0 - 11
      * @returns {number}
      */
-    month() {
-        return this._date.month();
-    }
+    month = () => this._date.month();
+
+    /** @returns {number} */
+    year = () => this._date.year();
 
     /**
-     *
-     * @returns {number}
-     */
-    year() {
-        return this._date.year();
-    }
-
-    /**
-     *
-     * @param {string} format
+     * January 7, 1990
      * @returns {string}
      */
-    format(format) {
+    longHumanString() {
+        let format = new DateFormatBuilder()
+            .month(MonthFormat.FULL_NAME)
+            .space()
+            .day(DayFormat.ONE_DIGIT)
+            .comma()
+            .space()
+            .year(YearFormat.FOUR_DIGIT)
+            .build();
+
+       return this._date.format(format);
+    }
+
+    /**
+     * Jan 7, 1990
+     * @returns {string}
+     */
+    shortHumanString() {
+        let format = new DateFormatBuilder()
+            .month(MonthFormat.SHORT_NAME)
+            .space()
+            .day(DayFormat.ONE_DIGIT)
+            .comma()
+            .space()
+            .year(YearFormat.FOUR_DIGIT)
+            .build();
+
         return this._date.format(format);
     }
 
     /**
+     * ISO 8601 string
      * @returns {string}
      */
-    friendlyHumanUnitedStatesToString() {
-       return this._date.format('MMMM D, YYYY');
-    }
+    computerString() {
+        let format = new DateFormatBuilder()
+            .year(YearFormat.FOUR_DIGIT)
+            .dash()
+            .month(MonthFormat.TWO_DIGIT)
+            .dash()
+            .day(DayFormat.TWO_DIGIT)
+            .build();
 
-    /**
-     * ISO 8601
-     * @returns {string}
-     */
-    toString() {
-        return this._date.format();
+        return this._date.format(format);
     }
 
     /**
@@ -155,12 +164,8 @@ class CalendarDate {
         return new CalendarDate(dayJsDate);
     }
 
-    /**
-     * @returns {CalendarDate}
-     */
-    static now() {
-        return new CalendarDate(dayjs());
-    }
+    /** @returns {CalendarDate} */
+    static now = () => return new CalendarDate(dayjs());
 }
 
 export {CalendarDate}

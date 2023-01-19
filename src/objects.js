@@ -2,12 +2,6 @@ import _ from "lodash";
 
 class Objects {
     /**
-     * @returns {Objects}
-     */
-    constructor() {
-    }
-
-    /**
      * @param {Object} object
      * @returns {number}
      */
@@ -36,9 +30,7 @@ class Objects {
      * @param {function} func
      * @returns {Dictionary<unknown[]>}
      */
-    static groupBy(object, func) {
-        return _.groupBy(object, func);
-    }
+    static groupBy = (object, func) => _.groupBy(object, func);
 
     /**
      *
@@ -46,9 +38,7 @@ class Objects {
      * @param {Object} object2
      * @returns boolean
      */
-    static areEqual(object1, object2) {
-        return _.isEqual(object1, object2);
-    }
+    static areEqual = (object1, object2) => _.isEqual(object1, object2);
 
     /**
      * Edits object in place and adds key => value to object. Then returns same object
