@@ -8,16 +8,6 @@ class Arrays {
     }
 
     /**
-     *
-     * @param {[]} array
-     * @param {string} field
-     * @return {[]}
-     */
-    static sort(array, field) {
-        return _.sortBy(array, field)
-    }
-
-    /**
      * Return max of an array
      * @param {[]} array
      * @return {number}
