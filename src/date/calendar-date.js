@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import objectSupport from "dayjs/plugin/objectSupport.js";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 
+import {Month} from "./data/month.js";
 import {DateUnit} from "./data/date-unit.js";
 import {DateFormatBuilder} from "./date-format-builder.js";
 import {MonthFormat} from "./data/month-format.js";
@@ -12,7 +13,6 @@ class CalendarDate {
     /** @param {dayjs.Dayjs} date */
     constructor(date) {
         /** @private */ this._date = date;
-
     }
 
     /** @returns {number} */
@@ -47,8 +47,8 @@ class CalendarDate {
     day = () => this._date.date();
 
     /** Months are zero indexed. 0 - 11
-     * @returns {number} */
-    month = () => this._date.month();
+     * @returns {Month} */
+    month = () => Month.fromZeroBasedIndex(this._date.month());
 
     /** @returns {number} */
     year = () => this._date.year();

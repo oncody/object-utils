@@ -8,5 +8,5 @@ test('calendar date year', () => {
 
 test('calendar date month', () => {
     let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 8, 1990);
-    expect(calendarDate.year()).toBe(1990);
+    expect(calendarDate.month()).toBe(Month.JANUARY);
 });
