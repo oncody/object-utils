@@ -14,15 +14,14 @@ class Month {
 
     /** @param {number} zeroBasedIndex */
     constructor(zeroBasedIndex) {
-        this._zeroBasedIndex = zeroBasedIndex;
-        this._oneBasedIndex = zeroBasedIndex + 1;
+        /** @private */ this._zeroBasedIndex = zeroBasedIndex;
     }
 
     /** @returns {number} */
     zeroBasedIndex = () => this._zeroBasedIndex;
 
     /** @returns {number} */
-    oneBasedIndex = () => this._oneBasedIndex;
+    oneBasedIndex = () => this._zeroBasedIndex + 1;
 }
 
 export {Month}
