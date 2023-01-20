@@ -13,7 +13,10 @@ class CalendarDate {
     }
 
     /** @returns {number} */
-    unix = () => this._date.valueOf();
+    unixSeconds = () => this._date.unix();
+
+    /** @returns {number} */
+    unixMs = () => this._date.valueOf();
 
     /** @param {CalendarDate} date
      * @returns {boolean} */
@@ -86,39 +89,6 @@ class CalendarDate {
             .dash()
             .day(DayFormat.TWO_DIGIT)
             .build());
-    }
-
-    /** @param {Month} month
-     * @param {number} day
-     * @param {number} year
-     * @returns {CalendarDate} */
-    static simpleDate = (month, day, year) => {
-        /** This allows you to create dayjs objects from an object
-         https://day.js.org/docs/en/plugin/object-support **/
-        return new CalendarDate(dayjs.utc({
-                year: year,
-                month: month.zeroBasedIndex(),
-                day: day,
-            }));
-    }
-
-    /** @param {string} date
-     * @returns {CalendarDate} */
-    static fromString = (date) => {
-        let formats = ['YYYY-MM-DD', 'MMM DD, YYYY', 'YYYY-M-D', 'MMM D, YYYY'];
-        let dayJsDate = dayjs.utc(date, formats);
-        return new CalendarDate(dayJsDate);
-    }
-
-    /** @param {number} unixMs ms since January 1st, 1970
-     * @returns CalendarDate */
-    static fromUnix = unixMs => {
-        return new CalendarDate(dayjs.utc(unixMs));
-    }
-
-    /** @returns {CalendarDate} */
-    static now = () => {
-        new CalendarDate(dayjs.utc());
     }
 }
 
