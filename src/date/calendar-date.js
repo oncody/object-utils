@@ -10,15 +10,9 @@ import {YearFormat} from "./data/year-format.js";
 
 class CalendarDate {
     /** @param {dayjs.Dayjs} date */
-    constructor( date) {
+    constructor(date) {
         /** @private */ this._date = date;
 
-        /** This allows you to create dayjs objects from an object
-         https://day.js.org/docs/en/plugin/object-support **/
-        dayjs.extend(objectSupport);
-
-        /** https://day.js.org/docs/en/parse/string-format **/
-        dayjs.extend(customParseFormat);
     }
 
     /** @returns {number} */
@@ -74,38 +68,37 @@ class CalendarDate {
 
     /** Example: Jan 7, 1990
      * @returns {string} */
-    shortHumanString= () => {
-        let format = new DateFormatBuilder()
+    shortHumanString = () => {
+        return this._date.format(new DateFormatBuilder()
             .month(MonthFormat.SHORT_NAME)
             .space()
             .day(DayFormat.ONE_DIGIT)
             .comma()
             .space()
             .year(YearFormat.FOUR_DIGIT)
-            .build();
-
-        return this._date.format(format);
+            .build());
     }
 
     /** ISO 8601 string. Example: 1990-01-07
      * @returns {string} */
-    computerString() {
-        let format = new DateFormatBuilder()
+    computerString = () => {
+        return this._date.format(new DateFormatBuilder()
             .year(YearFormat.FOUR_DIGIT)
             .dash()
             .month(MonthFormat.TWO_DIGIT)
             .dash()
             .day(DayFormat.TWO_DIGIT)
-            .build();
-
-        return this._date.format(format);
+            .build());
     }
 
     /** @param {Month} month
      * @param {number} day
      * @param {number} year
      * @returns {CalendarDate} */
-    static simpleDate(month, day, year) {
+    static simpleDate = (month, day, year) => {
+        /** This allows you to create dayjs objects from an object
+         https://day.js.org/docs/en/plugin/object-support **/
+        dayjs.extend(objectSupport);
 
         return new CalendarDate(dayjs({
             month: month.zeroBasedIndex(),
@@ -114,28 +107,25 @@ class CalendarDate {
         }));
     }
 
-    /**
-     * @param {string} date
-     * @returns {CalendarDate}
-     */
-    static fromString(date) {
+    /** @param {string} date
+     * @returns {CalendarDate} */
+    static fromString = (date) => {
+        /** https://day.js.org/docs/en/parse/string-format **/
+        dayjs.extend(customParseFormat);
 
         let formats = ['YYYY-MM-DD', 'MMM DD, YYYY', 'YYYY-M-D', 'MMM D, YYYY'];
         let dayJsDate = dayjs(date, formats);
         return new CalendarDate(dayJsDate);
     }
 
-    /**
-     * @param {number} timestamp
-     * @returns CalendarDate
-     */
-    static fromUnix(timestamp) {
-        let dayJsDate = dayjs.unix(timestamp);
-        return new CalendarDate(dayJsDate);
+    /** @param {number} timestamp
+     * @returns CalendarDate */
+    static fromUnix = timestamp => {
+        return new CalendarDate(dayjs.unix(timestamp));
     }
 
     /** @returns {CalendarDate} */
-    static now = () => return new CalendarDate(dayjs());
+    static now = () => new CalendarDate(dayjs());
 }
 
 export {CalendarDate}
