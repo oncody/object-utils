@@ -1,4 +1,4 @@
-import {Objects} from "../src/objects.js";
+import {Objects} from "../src/object/objects.js";
 
 test('test object size', () => {
     expect(Objects.size({a:1, b:2})).toBe(2);

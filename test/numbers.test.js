@@ -1,4 +1,4 @@
-import {Numbers} from "../src/numbers.js";
+import {Numbers} from "../src/object/numbers.js";
 
 test('test numbers from string basic', () => {
     expect(Numbers.fromString('3')).toBe(3);
