@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import objectSupport from "dayjs/plugin/objectSupport.js";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import utc from 'dayjs/plugin/utc.js';
 
 import {Month} from "./data/month.js";
 import {DateUnit} from "./data/date-unit.js";
@@ -9,6 +10,7 @@ import {MonthFormat} from "./data/month-format.js";
 import {DayFormat} from "./data/day-format.js";
 import {YearFormat} from "./data/year-format.js";
 
+
 class CalendarDate {
     /** @param {dayjs.Dayjs} date */
     constructor(date) {
@@ -16,7 +18,13 @@ class CalendarDate {
     }
 
     /** @returns {number} */
-    unix = () => this._date.unix();
+    unix = () => {
+        console.log('hour: ' + this._date.hour());
+        console.log('min: ' + this._date.minute());
+        console.log('sec: ' + this._date.second());
+        console.log('ms: ' + this._date.millisecond());
+        return this._date.unix();
+    }
 
     /** @param {CalendarDate} date
      * @returns {boolean} */
@@ -99,12 +107,13 @@ class CalendarDate {
         /** This allows you to create dayjs objects from an object
          https://day.js.org/docs/en/plugin/object-support **/
         dayjs.extend(objectSupport);
-
-        return new CalendarDate(dayjs({
-            month: month.zeroBasedIndex(),
-            day: day,
-            year: year,
-        }));
+        dayjs.extend(utc)
+        // return new CalendarDate(dayjs(new Date(year, month.zeroBasedIndex(), day)));
+        return new CalendarDate(dayjs.utc({
+                year: year,
+                month: month.zeroBasedIndex(),
+                day: day,
+            }));
     }
 
     /** @param {string} date
@@ -112,20 +121,25 @@ class CalendarDate {
     static fromString = (date) => {
         /** https://day.js.org/docs/en/parse/string-format **/
         dayjs.extend(customParseFormat);
+        dayjs.extend(utc);
 
         let formats = ['YYYY-MM-DD', 'MMM DD, YYYY', 'YYYY-M-D', 'MMM D, YYYY'];
-        let dayJsDate = dayjs(date, formats);
+        let dayJsDate = dayjs.utc(date, formats);
         return new CalendarDate(dayJsDate);
     }
 
     /** @param {number} timestamp
      * @returns CalendarDate */
     static fromUnix = timestamp => {
+        dayjs.extend(utc);
         return new CalendarDate(dayjs.unix(timestamp));
     }
 
     /** @returns {CalendarDate} */
-    static now = () => new CalendarDate(dayjs());
+    static now = () => {
+        dayjs.extend(utc);
+        new CalendarDate(dayjs.utc());
+    }
 }
 
 export {CalendarDate}
