@@ -16,9 +16,14 @@ test('calendar date day', () => {
     expect(calendarDate.day()).toBe(8);
 });
 
-test('unix timestamp', () => {
+test('basic unix timestamp', () => {
     let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 1, 1970);
     expect(calendarDate.unix()).toBe(0);
+});
+
+test('unix timestamp', () => {
+    let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 2, 1970);
+    expect(calendarDate.unix()).toBe(86400000);
 });
 
 test('from unix', () => {
