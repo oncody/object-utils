@@ -1,4 +1,3 @@
-
 class Arrays {
     /**
      * Return max of an array
