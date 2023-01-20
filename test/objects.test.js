@@ -19,3 +19,12 @@ test('test object areEqual false', () => {
     let second = {a:2, b:1};
     expect(Objects.areEqual(first, second)).toBe(false);
 });
+
+test('test object append value', () => {
+    let object = {};
+    object = Objects.appendValue(object, 'a', 1);
+    object = Objects.appendValue(object, 'b', 2);
+    expect(Objects.size(object)).toBe(2);
+    expect(object.a).toBe(1);
+    expect(object.b).toBe(2);
+});
