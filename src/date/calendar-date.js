@@ -105,7 +105,6 @@ class CalendarDate {
     /** @param {string} date
      * @returns {CalendarDate} */
     static fromString = (date) => {
-
         let formats = ['YYYY-MM-DD', 'MMM DD, YYYY', 'YYYY-M-D', 'MMM D, YYYY'];
         let dayJsDate = dayjs.utc(date, formats);
         return new CalendarDate(dayJsDate);

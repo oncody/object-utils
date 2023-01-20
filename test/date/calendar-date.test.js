@@ -32,3 +32,18 @@ test('from unix', () => {
     expect(calendarDate.month()).toBe(Month.JANUARY);
     expect(calendarDate.day()).toBe(1);
 });
+
+test('short human string', () => {
+    let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 8, 1990);
+    expect(calendarDate.shortHumanString()).toBe('Jan 8, 1990');
+});
+
+test('long human string', () => {
+    let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 8, 1990);
+    expect(calendarDate.longHumanString()).toBe('January 8, 1990');
+});
+
+test('computer string', () => {
+    let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 8, 1990);
+    expect(calendarDate.computerString()).toBe('1990-01-08');
+});
