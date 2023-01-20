@@ -18,8 +18,12 @@ test('calendar date day', () => {
 
 test('unix timestamp', () => {
     let calendarDate = CalendarDate.simpleDate(Month.JANUARY, 1, 1970);
-    // expect(calendarDate.hour()).toBe(0);
-    // expect(calendarDate.minute()).toBe(0);
-    // expect(calendarDate.unix()).toBe(0);
     expect(calendarDate.unix()).toBe(0);
+});
+
+test('from unix', () => {
+    let calendarDate = CalendarDate.fromUnix(0);
+    expect(calendarDate.year()).toBe(1970);
+    expect(calendarDate.month()).toBe(Month.JANUARY);
+    expect(calendarDate.day()).toBe(1);
 });

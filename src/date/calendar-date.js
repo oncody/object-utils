@@ -13,13 +13,7 @@ class CalendarDate {
     }
 
     /** @returns {number} */
-    unix = () => {
-        console.log('hour: ' + this._date.hour());
-        console.log('min: ' + this._date.minute());
-        console.log('sec: ' + this._date.second());
-        console.log('ms: ' + this._date.millisecond());
-        return this._date.unix();
-    }
+    unix = () => this._date.valueOf();
 
     /** @param {CalendarDate} date
      * @returns {boolean} */
@@ -117,10 +111,10 @@ class CalendarDate {
         return new CalendarDate(dayJsDate);
     }
 
-    /** @param {number} timestamp
+    /** @param {number} unixMs ms since January 1st, 1970
      * @returns CalendarDate */
-    static fromUnix = timestamp => {
-        return new CalendarDate(dayjs.unix(timestamp));
+    static fromUnix = unixMs => {
+        return new CalendarDate(dayjs.utc(unixMs));
     }
 
     /** @returns {CalendarDate} */
