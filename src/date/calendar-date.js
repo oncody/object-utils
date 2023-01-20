@@ -23,9 +23,9 @@ class CalendarDate {
     isBefore = date => this._date.isBefore(date._date);
 
     /** Used for comparing two dates like sorting
-     * @param date
+     * @param {CalendarDate} date
      * @returns {number} */
-    minus = date => this.unix() - date.unix();
+    minus = date => this.unixMs() - date.unixMs();
 
     /** @param {number} value
      * @param {DateUnit} dateUnit
