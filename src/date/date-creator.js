@@ -31,7 +31,10 @@ class DateCreator {
     static unixMs = unixMs => new CalendarDate(dayjs.utc(unixMs));
 
     /** @returns {CalendarDate} */
-    static now = () => new CalendarDate(dayjs.utc());
+    static now = () => {
+        let date = new CalendarDate(dayjs.utc());
+        return DateCreator.date(date.month(), date.day(), date.year());
+    }
 }
 
 export {DateCreator}

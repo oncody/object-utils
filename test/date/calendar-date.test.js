@@ -231,3 +231,11 @@ test('difference in years positive 5', () => {
     let diff = first.differenceInYears(second);
     expect(diff).toBe(5);
 });
+
+// test('now', () => {
+//     let date = DateCreator.now();
+//     expect(date.day()).toBe(21);
+//     expect(date.month()).toBe(Month.JANUARY);
+//     expect(date.year()).toBe(2023);
+//     console.log(`unixMs: ` + date.unixMs())
+// });
