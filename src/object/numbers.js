@@ -7,8 +7,8 @@ class Numbers {
     /** Round a float to X decimal places
      * @param {number} number
      * @param {number} decimals
-     * @returns {number} */
-    static roundFloat = (number, decimals) => parseFloat(number.toFixed(decimals));
+     * @returns {string} */
+    static roundFloat = (number, decimals) => number.toLocaleString("en-US", { maximumFractionDigits: decimals, minimumFractionDigits: decimals });
 
     /** @param {number} minInclusive - inclusive
      * @param {number} maxExclusive - exclusive

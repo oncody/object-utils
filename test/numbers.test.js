@@ -13,11 +13,15 @@ test('test numbers from string with two commas', () => {
 });
 
 test('test numbers round float', () => {
-    expect(Numbers.roundFloat(3.14159, 2)).toBe(3.14);
+    expect(Numbers.roundFloat(3.14159, 2)).toBe('3.14');
 });
 
 test('test numbers round float', () => {
-    expect(Numbers.roundFloat(3.14159, 3)).toBe(3.142);
+    expect(Numbers.roundFloat(3.14159, 3)).toBe('3.142');
+});
+
+test('test numbers round float', () => {
+    expect(Numbers.roundFloat(3.1, 2)).toBe('3.10');
 });
 
 test('test random int exclusive', () => {
