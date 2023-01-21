@@ -22,25 +22,41 @@ class CalendarDate {
      * @returns {boolean} */
     isBefore = date => this._date.isBefore(date._date);
 
-    /** Used for comparing two dates like sorting
-     * @param {CalendarDate} date
-     * @returns {number} */
-    minus = date => this.unixMs() - date.unixMs();
+    /** @param {number} value
+     * @returns {CalendarDate} */
+    addDays = value => new CalendarDate(this._date.add(value, DateUnit.DAY.toString()));
 
     /** @param {number} value
-     * @param {DateUnit} dateUnit
      * @returns {CalendarDate} */
-    add = (value, dateUnit) => new CalendarDate(this._date.add(value, dateUnit.toString()));
+    addMonths = value => new CalendarDate(this._date.add(value, DateUnit.MONTH.toString()));
 
     /** @param {number} value
-     * @param {DateUnit} dateUnit
      * @returns {CalendarDate} */
-    subtract = (value, dateUnit) => new CalendarDate(this._date.subtract(value, dateUnit.toString()));
+    addYears = value => new CalendarDate(this._date.add(value, DateUnit.YEAR.toString()));
+
+    /** @param {number} value
+     * @returns {CalendarDate} */
+    subtractDays = value => new CalendarDate(this._date.subtract(value, DateUnit.DAY.toString()));
+
+    /** @param {number} value
+     * @returns {CalendarDate} */
+    subtractMonths = value => new CalendarDate(this._date.subtract(value, DateUnit.MONTH.toString()));
+
+    /** @param {number} value
+     * @returns {CalendarDate} */
+    subtractYears = value => new CalendarDate(this._date.subtract(value, DateUnit.YEAR.toString()));
 
     /** @param {CalendarDate} date
-     * @param {DateUnit} dateUnit
      * @returns {number} */
-    difference = (date, dateUnit) => this._date.diff(date._date, dateUnit.toString());
+    differenceInDays = date => this._date.diff(date._date, DateUnit.DAY.toString());
+
+    /** @param {CalendarDate} date
+     * @returns {number} */
+    differenceInMonths = date => this._date.diff(date._date, DateUnit.MONTH.toString());
+
+    /** @param {CalendarDate} date
+     * @returns {number} */
+    differenceInYears = date => this._date.diff(date._date, DateUnit.YEAR.toString());
 
     /** 1 - 31. Day of month
      * @returns {number} */
